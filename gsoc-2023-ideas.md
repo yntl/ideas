@@ -56,34 +56,34 @@ _Duration_: 350 hours
 
 _Mentor_: [@msaligane](https://github.com/msaligane)
 
-## Simplify and automate the Verilog Generation Step in OpenFASOC
+## Simplify and automate the Verilog Generation Step in OpenFASoC
 
-OpenFASOC creates an automated generation of the Verilog representation of a design/block using Python and template files.
+OpenFASoC creates an automated generation of the Verilog representation of a design/block using Python and template files.
 The existing Verilog generation is design dependent and isn’t using consistent formatting.
 Also, depending on the complexity of the design, sweeping the number of auxiliary cells can become complex and time consuming.
 The current workarounds are hacks that do not yield ideal results.
 
 ### Task description
 
-1. Investigate the existing generators in OpenFASOC and FASOC
+1. Investigate the existing generators in OpenFASoC and FASoC
 
     1. Explore new ways of generating Verilog using tools existing open source tools
     1. Propose new ideas to simplify th verilog generation
 
 1. Implement Python code that allows Verilog generation for new analog generators
 
-    1. Review all the generators in FASOC and implement them in OpenFASOC
+    1. Review all the generators in FASoC and implement them in OpenFASoC
     1. Create new templates and Python tools for new blocks
 
 1. Implement regression tests in the CI to make sure functionality isn’t broken
 
     1. Add Verilog to Spice generation to be able to simulate the netlist before synthesis
 
-1. Implement the new Verilog generation flow in OpenFASOC and test it on existing generators
+1. Implement the new Verilog generation flow in OpenFASoC and test it on existing generators
 
 ### Expected outcomes
 
-The goal is to simplify the Verilog Generation step in OpenFASOC and reduce the time to create a new generator
+The goal is to simplify the Verilog Generation step in OpenFASoC and reduce the time to create a new generator
 
 ### Required skills
 
@@ -101,13 +101,13 @@ _Mentor_: [@msaligane](https://github.com/msaligane)
 
 ## Introduce Special Router Feature and Utilize in OpenFASoC
 
-OpenFASoC generators create multi-voltage domain designs using Openroad.
+OpenFASoC generators create multi-voltage domain designs using OpenROAD.
 Currently, these routes require special scripts (python and tcl scripts) to identify and create routes from analog cells to power straps and between macros in different voltage domains.
-Routes to power nets (for example the temp-sense HEADER routes) require creating a rpin on the power strap and configuring it as a “signal” type route; This is because the power nets are not routed by signal routers in Openroad.
+Routes to power nets (for example the temp-sense HEADER routes) require creating a rpin on the power strap and configuring it as a “signal” type route; This is because the power nets are not routed by signal routers in OpenROAD.
 Generators currently use non default rules to allow for high quality routing, but the route layer cannot be specified (and the route uses the signal router).
 The signal type route additionally createst LVS issues (rpin signal net causes issues with LVS); Custom OpenFASoC python scripts are used to resolve the issues caused by rpin/pin naming.
 This feature was first proposed in summer 2022 and has been brought up several times when discussing temp-sense-gen and ldo-gen (see OR issue 2209 below).
-The issues caused by these hacks have been a constant source of bugs in OpenFASoC. The OpenFASoC team has attempted to improve the quality of the routes, but a full solution in Openroad would yield much better results.
+The issues caused by these hacks have been a constant source of bugs in OpenFASoC. The OpenFASoC team has attempted to improve the quality of the routes, but a full solution in OpenROAD would yield much better results.
 The current workarounds are hacks that do not yield ideal results.
 
 ### Task description
@@ -116,12 +116,12 @@ The current workarounds are hacks that do not yield ideal results.
 
     1. Implement test algorithms or explore existing literature and documented results.
 
-1. Understand relevant portions of the Openroad code-base
+1. Understand relevant portions of the OpenROAD code-base
 
-    1. Communicate further with Openroad team about proposed algorithms and appropriate changes
-    1. Plan router with Openroad team
+    1. Communicate further with OpenROAD team about proposed algorithms and appropriate changes
+    1. Plan router with OpenROAD team
 
-1. Create: code and merge new feature to Openroad
+1. Create: code and merge new feature to OpenROAD
 
     1. Work on feature PR with team-members
     1. Implement and thoroughly test the new router for bugs or issues
